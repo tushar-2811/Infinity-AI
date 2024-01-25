@@ -1,9 +1,10 @@
 "use client";
 import { cn } from '@/lib/utils';
-import { Code, ImageIcon, LayoutDashboard, MessageSquare, Settings } from 'lucide-react';
+import { Code, Fingerprint, ImageIcon, LayoutDashboard, MessageSquare, Settings, ThumbsUpIcon, Wallet, Wallet2Icon, WalletCardsIcon, WalletIcon } from 'lucide-react';
 import { Montserrat } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import React from 'react'
 
 const montserrat = Montserrat({
@@ -21,36 +22,44 @@ const routes = [
     {
         label : "Conversation",
         icon : MessageSquare,
-        href : "/dashboard",
+        href : "/conversation",
         color : "text-violet-500"
     },
     {
         label : "Image Generation",
         icon : ImageIcon,
-        href : "/dashboard",
+        href : "/image",
         color : "text-pink-700"
     },
     {
         label : "Code Generation",
         icon : Code,
-        href : "/dashboard",
+        href : "/code",
         color : "text-emerald-500"
     },
     {
+      label : "My Wallet",
+      icon : WalletCardsIcon,
+      href : "/wallet",
+      color :  "text-sky-500",
+      
+  },
+    {
         label : "settings",
         icon : Settings,
-        href : "/dashboard",
+        href : "/settings",
         
     },
 ]
 
 const SideBar = () => {
+  const pathName = usePathname();
   return (
     <div className='space-y-4 py-4 flex flex-col h-full 
     bg-[#111827] text-white ' >
       
       <div className='px-3 py-2 flex-1'>
-       <Link href={"/dashboard"} className='flex items-center
+       <Link href={"/"} className='flex items-center
        pl-3 mb-14' >
           <div className='relative w-8 h-8 mr-4 '>
             <Image 
@@ -71,10 +80,7 @@ const SideBar = () => {
                 <Link 
                 href={route.href} 
                 key={route.href} 
-                className='text-sm group flex p-3 w-full
-                justify-start font-medium cursor-pointer
-                hover:text-white hover:bg-white/10 rounded-lg
-                transition'
+                className={cn("text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-white hover:bg-white/10 rounded-lg transition" , pathName === route.href ? "text-white bg-white/10 " : "text-zinc-400")}
                 >
                   
                   <div className='flex items-center flex-1' >

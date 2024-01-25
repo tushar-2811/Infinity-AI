@@ -1,8 +1,14 @@
+import LandingContent from "@/components/LandingContent";
+import LandingHero from "@/components/LandingHero";
+import LandingNavbar from "@/components/LandingNavbar";
+
 export default function LandingPage() {
     return (
-       <>
-        <h1>Landing Page(unprotected)</h1>
-       </>
+       <div className="h-full" >
+          <LandingNavbar/>
+          <LandingHero/>
+          <LandingContent/>
+       </div>
     );
   }
   
