@@ -1,6 +1,6 @@
 "use client";
 import { cn } from '@/lib/utils';
-import { Code, Fingerprint, ImageIcon, LayoutDashboard, MessageSquare, Settings, ThumbsUpIcon, Wallet, Wallet2Icon, WalletCardsIcon, WalletIcon } from 'lucide-react';
+import { Code, CodeIcon, CodeSquare, Fingerprint, ImageIcon, LayoutDashboard, MessageSquare, Settings, ThumbsUpIcon, Wallet, Wallet2Icon, WalletCardsIcon, WalletIcon } from 'lucide-react';
 import { Montserrat } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -38,6 +38,12 @@ const routes = [
         color : "text-emerald-500"
     },
     {
+      label : "Code Debug",
+      icon : CodeSquare,
+      href : "/code-debug",
+      color : "text-blue-500"
+  },
+    {
       label : "My Wallet",
       icon : WalletCardsIcon,
       href : "/wallet",
@@ -69,7 +75,7 @@ const SideBar = () => {
             />
           </div>
           <h1 className={cn('text-2xl font-bold' , montserrat.className )}>
-            Infinty
+            Infinity
           </h1>
        </Link>
 
