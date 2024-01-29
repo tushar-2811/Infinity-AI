@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from 'react'
 import LandingNavbar from '@/components/LandingNavbar'
+import { toast } from "sonner"
+
 
 import {
   Form,
@@ -36,15 +38,17 @@ import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { SignUpSchema } from '@/validators/auth'
 import { zodResolver } from "@hookform/resolvers/zod"
-import { cn } from '@/lib/utils';
-import { ArrowBigRight, ArrowLeft, ArrowRight } from 'lucide-react';
-
+import { cn } from '@/lib/utils'
+import { ArrowBigRight, ArrowLeft, ArrowRight } from 'lucide-react'
+import {motion} from 'framer-motion'
 
 
 
 const page = () => {
   const [formStep, setFormStep] = useState(0);
   type Input = z.infer<typeof SignUpSchema>;
+
+  
 
   const form = useForm<Input>({
     resolver: zodResolver(SignUpSchema),
@@ -62,6 +66,10 @@ const page = () => {
 
 
   function onSubmit(data: Input) {
+    if(data.password !== data.confirmPassword){
+      toast( "Passwords don't match")
+      return;
+    }
     console.log(data);
   }
 
@@ -80,10 +88,19 @@ const page = () => {
           <CardContent>
 
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 ">
-                <div className={cn("space-y-3", {
-                  "hidden": formStep === 1
-                })}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="relative space-y-8 overflow-x-hidden">
+                <motion.div className={cn("space-y-3", {
+                  // "hidden": formStep === 1
+                })}
+                // translateX = 0 , when formstep == 0
+                // translateX == -100% , when formstep == 1
+                animate={{
+                  translateX: `-${formStep * 100}%`,
+                }}
+                transition={{
+                  ease: "easeInOut",
+                }}
+                >
 
                   <FormField
                     control={form.control}
@@ -157,13 +174,24 @@ const page = () => {
                   />
 
 
-                </div>
+                </motion.div>
 
                 {/* password and confirm password */}
 
-                <div className={cn("space-y-3", {
-                  "hidden": formStep === 0
-                })}>
+                <motion.div className={cn("space-y-3 absolute top-0 left-0 right-0", {
+                  // "hidden": formStep === 0
+                })}
+                // formstep == 0 , translateX == 100%
+                // formstep == 1 , translateX == 0
+                animate={{
+                  translateX: `${100 - formStep * 100}%`,
+                
+                }}
+                 
+                transition={{
+                  ease: "easeInOut",
+                }}
+                >
 
                   <FormField
                     control={form.control}
@@ -197,14 +225,18 @@ const page = () => {
                     )}
                   />
 
-                </div>
+                </motion.div>
 
 
                 <div className='flex gap-2' >
                   <Button type="submit" className={cn(" hover:bg-white bg-white text-black ", {
                     "hidden": formStep === 0
-                  })} >Submit</Button>
+                  })} >
+                    Submit
+                </Button>
+
                   <Button
+                  type='button'
                     onClick={() => {
                       form.trigger(['name', 'email', 'phoneNo', 'gender']);
                       const nameState = form.getFieldState('name');
@@ -231,10 +263,11 @@ const page = () => {
                   </Button>
 
                   <Button 
+                  type='button'
                   onClick={() => {
                     setFormStep(0);
                   }}
-                  type="submit" className={cn('bg-black text-white border-2', {
+                   className={cn('bg-black text-white border-2', {
                     "hidden": formStep === 0
                   })} ><ArrowLeft className='h-4 w-4 mr-2 ' /> Go Back  </Button>
                 </div>

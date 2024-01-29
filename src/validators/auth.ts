@@ -13,5 +13,5 @@ export const SignUpSchema = z.object({
             .refine((val) => !isNaN(val as unknown as number) , {message : "PhoneNo. should be a number"}),
     password : z.string().min(5 , {message : "Password is too short."}).max(255),
     confirmPassword : z.string().min(5 , {message : "Password is too short."}).max(255),
-    gender : z.string()
+    gender : z.string().min(3 , {message : "Please Select Gender"})
 })

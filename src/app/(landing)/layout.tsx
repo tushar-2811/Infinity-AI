@@ -1,4 +1,5 @@
 import React from 'react'
+import {motion} from 'framer-motion'
 
 const LandingLayout = ({
     children
@@ -7,7 +8,7 @@ const LandingLayout = ({
 }) => {
   return (
    <main className='h-full bg-black overflow-auto' >
-        <div className='mx-auto max-w-screen-xl h-full w-full'>
+         <div className='mx-auto max-w-screen-xl h-full w-full'>
           {children}
         </div>
    </main>

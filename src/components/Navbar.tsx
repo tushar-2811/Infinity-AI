@@ -46,13 +46,14 @@ import {
 const Navbar = () => {
     const pathName = usePathname();
     const router = useRouter();
+    
     return (
         <div className='flex items-center p-4' >
             <MobileSidebar />
 
             <div className='flex w-full justify-start'>
                 {
-                    pathName !== "/dashboard" ? <Button onClick={router.back} >
+                    pathName !== "/dashboard" ? <Button className='bg-black' onClick={router.back} >
                         <ArrowLeft className=' hover:cursor-pointer' />
                     </Button> : <div></div>
                 }
@@ -123,7 +124,7 @@ const Navbar = () => {
 
 
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem onClick={() => toast("logout successful")} >
+                        <DropdownMenuItem onClick={() => toast( "Logout Successful")} >
                             <LogOut className="mr-2 h-4 w-4 text-red-500" />
                             <span>Log out</span>
                         </DropdownMenuItem>
