@@ -75,7 +75,7 @@ const SideBar = () => {
             />
           </div>
           <h1 className={cn('text-2xl font-bold' , montserrat.className )}>
-            Infinity
+             Infinity
           </h1>
        </Link>
 
