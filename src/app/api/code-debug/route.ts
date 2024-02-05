@@ -9,7 +9,7 @@ const openai = new OpenAI({
 
 const instructionMessage: ChatCompletionMessageParam = {
     role : "system",
-    content : "You are a legal advisor. You must answer based on Indian laws and Indian high court and supreme court judgements."
+    content : "You are a code debugger. You must answer only in markdown code snippets. Use code comments for explanations"
 }
 
 

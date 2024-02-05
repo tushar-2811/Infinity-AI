@@ -20,7 +20,7 @@ const routes = [
         color : "text-sky-500"
     },
     {
-        label : "Conversation",
+        label : "Legal Advisor",
         icon : MessageSquare,
         href : "/conversation",
         color : "text-violet-500"

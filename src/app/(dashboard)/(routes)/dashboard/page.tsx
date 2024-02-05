@@ -1,14 +1,14 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
-import { ArrowRight, Code, FingerprintIcon, ImageIcon, MessageSquare, WalletCardsIcon } from "lucide-react";
+import { ArrowRight, Code, Code2Icon, CodeIcon, CodeSquareIcon, FingerprintIcon, ImageIcon, MessageSquare, WalletCardsIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 
 const tools = [
   
    {
-       label : "Conversation",
+       label : "Legal Advisor",
        icon : MessageSquare,
        href : "/conversation",
        color : "text-violet-500",
@@ -27,6 +27,13 @@ const tools = [
    href : "/code",
    color :  "text-green-500",
    bgColor : "bg-green-500/10"
+},
+{
+   label : "Code Debugger",
+   icon : CodeSquareIcon,
+   href : "/code-debug",
+   color :  "text-blue-500",
+   bgColor : "bg-blue-500/10"
 },
 {
    label : "Pay Now",
