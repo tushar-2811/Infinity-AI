@@ -43,7 +43,7 @@ export async function POST(request : NextRequest) {
 
         const jwtToken = jwt.sign({_id : existingUserByEmail.id} ,String( process.env.JWT_SECRET) , {expiresIn : '24h'});
 
-        return NextResponse.json({
+        const response = NextResponse.json({
             ok : true,
             msg : "successful login",
             jwtToken : jwtToken,
@@ -53,7 +53,10 @@ export async function POST(request : NextRequest) {
                 email : existingUserByEmail.email,
                 isWalletActivated : existingUserByEmail.walletActivated
             }
-        } , {status : 201})
+        } , {status : 201 });
+
+        response.cookies.set("authToken" , jwtToken);
+        return response;
         
     } catch (error) {
         console.log(error);

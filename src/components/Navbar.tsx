@@ -39,6 +39,7 @@ import {
     DropdownMenuSubTrigger,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import axios from 'axios';
 
 
 
@@ -46,6 +47,22 @@ import {
 const Navbar = () => {
     const pathName = usePathname();
     const router = useRouter();
+
+    async function handleLogout() {
+         try {
+            const response = await axios.get("/api/auth/sign-out");
+            if(!response.data.ok){
+                console.log(response.data.msg);
+                return;
+            }
+            
+            router.push("/");
+            toast( "Logout Successful")
+            
+         } catch (error) {
+            console.log("error in logout" , error);
+         }
+    }
     
     return (
         <div className='flex items-center p-4' >
@@ -124,7 +141,7 @@ const Navbar = () => {
 
 
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem onClick={() => toast( "Logout Successful")} >
+                        <DropdownMenuItem onClick={ handleLogout} >
                             <LogOut className="mr-2 h-4 w-4 text-red-500" />
                             <span>Log out</span>
                         </DropdownMenuItem>

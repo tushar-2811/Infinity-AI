@@ -42,11 +42,14 @@ import { cn } from '@/lib/utils'
 import { ArrowBigRight, ArrowLeft, ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 import Link from 'next/link';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 
 
 
 const page = () => {
+  const router = useRouter();
 
   const [formStep, setFormStep] = useState(0);
   type Input = z.infer<typeof SignUpSchema>;
@@ -68,12 +71,24 @@ const page = () => {
   // console.log(form.watch());
 
 
-  function onSubmit(data: Input) {
-    if (data.password !== data.confirmPassword) {
-      toast("Passwords don't match")
-      return;
-    }
-    console.log(data);
+ async function onSubmit(data: Input) {
+     try {
+      if (data.password !== data.confirmPassword) {
+        toast("Passwords don't match")
+        return;
+      }
+
+      const response = await axios.post("/api/auth/sign-up" , data);
+
+      if(!response.data.ok){
+         console.log("error in sign-up" , response.data?.error);
+         return;
+      }
+
+      router.push("/sign-in");
+     } catch (error) {
+       console.log("error in sign-up" , error)
+     }
   }
 
 

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react'
 import LandingNavbar from '@/components/LandingNavbar'
-import { toast } from "sonner"
+import axios from 'axios';
 
 
 import {
@@ -41,11 +41,13 @@ import { cn } from '@/lib/utils'
 import { ArrowBigRight, ArrowLeft, ArrowRight } from 'lucide-react'
 import Link from 'next/link';
 import { SignInSchema } from '@/validators/auth';
+import { useRouter } from 'next/navigation';
 
 
 
 
 const page = () => {
+  const router = useRouter();
 
   type Input = z.infer<typeof SignInSchema>;
 
@@ -62,8 +64,22 @@ const page = () => {
   // console.log(form.watch());
 
 
-  function onSubmit(data: Input) {
-    console.log(data);
+ async function onSubmit(data: Input) {
+      console.log(data);
+      try {
+        const response = await axios.post("/api/auth/sign-in" , data);
+
+        if(!response.data.ok) {
+          console.log(response.data.error);
+          return;
+        }
+        
+        router.push("/dashboard");
+        
+      } catch (error) {
+         console.log("error in sign-in" , error);
+      }
+
   }
 
 
