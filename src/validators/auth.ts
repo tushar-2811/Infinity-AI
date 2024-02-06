@@ -15,3 +15,10 @@ export const SignUpSchema = z.object({
     confirmPassword : z.string().min(5 , {message : "Password is too short."}).max(255),
     gender : z.string().min(3 , {message : "Please Select Gender"})
 })
+
+export const SignInSchema = z.object({
+        email : z.string().email(),
+        password : z.string().min(5 , {
+                message : "Password is toos short"
+        }).max(255)
+})
