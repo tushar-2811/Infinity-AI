@@ -12,7 +12,7 @@ const UserProvider = ({children} : {children: React.JSX.Element} ) => {
           const {data} = await axios.get("/api/auth/current-user");
           if(!data.ok) {
              console.log(data.msg , data.error);
-             toast(data.msg);
+             toast("Not signed-In");
              return;
           }else{
             console.log(data.user)
