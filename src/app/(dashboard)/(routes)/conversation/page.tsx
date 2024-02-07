@@ -34,7 +34,7 @@ import { cn } from '@/lib/utils';
 import UserAvatar from '@/components/avatars/UserAvatar';
 import BotAvatar from '@/components/avatars/BotAvatar';
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
   const [messages , setMessages] = useState<ChatCompletionMessageParam[]>([])
   type PromptFormInput = z.infer<typeof conversationSchema>;
@@ -167,4 +167,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

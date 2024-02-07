@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Fingerprint, Wallet2Icon } from 'lucide-react'
 import React, { useState } from 'react'
 
-const page = () => {
+const Page = () => {
   const [isWalletSetup, setWalletSetup] = useState<boolean>(true);
   return (
     <div>
@@ -46,4 +46,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

@@ -24,21 +24,13 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
+
 
 
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { cn } from '@/lib/utils'
-import { ArrowBigRight, ArrowLeft, ArrowRight } from 'lucide-react'
 import Link from 'next/link';
 import { SignInSchema } from '@/validators/auth';
 import { useRouter } from 'next/navigation';
@@ -46,7 +38,7 @@ import { useRouter } from 'next/navigation';
 
 
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
 
   type Input = z.infer<typeof SignInSchema>;
@@ -168,4 +160,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

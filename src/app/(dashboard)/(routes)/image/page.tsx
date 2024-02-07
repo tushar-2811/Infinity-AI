@@ -37,7 +37,7 @@ import { SelectContent, SelectValue } from '@radix-ui/react-select';
 import { Card, CardFooter } from '@/components/ui/card';
 import Image from 'next/image';
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
   const [images , setImages] = useState<string[]>([]);
   
@@ -235,4 +235,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

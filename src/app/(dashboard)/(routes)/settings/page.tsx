@@ -2,7 +2,7 @@ import Heading from '@/components/Heading'
 import { Settings } from 'lucide-react'
 import React from 'react'
 
-const page = () => {
+const Page = () => {
   return (
     <div>
         <Heading
@@ -23,4 +23,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
