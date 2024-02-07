@@ -48,7 +48,6 @@ const Navbar = () => {
     const router = useRouter();
     const context: any = useContext(UserContext);
     const {user} = context
-    console.log("navbar->>" ,user);
 
     async function handleLogout() {
          try {
@@ -103,7 +102,7 @@ const Navbar = () => {
                         <DropdownMenuGroup>
                             <DropdownMenuItem>
                                 <User className="mr-2 h-4 w-4 text-pink-500" />
-                                <span>{user?.email}</span>
+                                <span>{user.email}</span>
 
                             </DropdownMenuItem>
 
