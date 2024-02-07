@@ -1,5 +1,5 @@
 'use client';
-import React from 'react'
+import React, { useContext } from 'react'
 import { Button } from './ui/button'
 import { ArrowBigLeft, ArrowLeft, AtSign, Menu, MessageCircle, MessageSquareHeart } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -40,13 +40,15 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import axios from 'axios';
-
-
+import UserContext from '@/hooks/userContext';
 
 
 const Navbar = () => {
     const pathName = usePathname();
     const router = useRouter();
+    const context: any = useContext(UserContext);
+    const {user} = context
+    console.log("navbar->>" ,user);
 
     async function handleLogout() {
          try {
@@ -101,7 +103,7 @@ const Navbar = () => {
                         <DropdownMenuGroup>
                             <DropdownMenuItem>
                                 <User className="mr-2 h-4 w-4 text-pink-500" />
-                                <span>Profile</span>
+                                <span>{user?.email}</span>
 
                             </DropdownMenuItem>
 
