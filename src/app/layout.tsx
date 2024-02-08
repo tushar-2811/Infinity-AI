@@ -22,7 +22,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <UserProvider>
       <ThemeProvider  
             attribute="class"
             defaultTheme="system"
@@ -33,7 +32,6 @@ export default function RootLayout({
       </body>
        <Toaster />
       </ThemeProvider>
-      </UserProvider>
     </html>
   );
 }

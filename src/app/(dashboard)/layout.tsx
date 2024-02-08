@@ -1,13 +1,25 @@
+"use client";
 import Navbar from '@/components/Navbar'
 import SideBar from '@/components/SideBar'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { motion } from "framer-motion"
+import useCurrentUser from '@/hooks/store/currentUser';
 
 const DashBoardLayout = ({
   children
 }: {
   children: React.ReactNode
 }) => {
+  const {setEmail} = useCurrentUser();
+ 
+  useEffect(() => {
+      if(!localStorage.getItem("userEmail")){
+         return;
+      }else{
+        setEmail(localStorage.getItem("userEmail"));
+      }
+  } , [setEmail])
+
   return (
     <div
       className='h-full relative' >

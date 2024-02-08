@@ -34,12 +34,15 @@ import { cn } from '@/lib/utils'
 import Link from 'next/link';
 import { SignInSchema } from '@/validators/auth';
 import { useRouter } from 'next/navigation';
+import useCurrentUser from '@/hooks/store/currentUser';
+import {toast} from 'sonner'
 
 
 
 
 const Page = () => {
   const router = useRouter();
+  const {email , setEmail} = useCurrentUser();
 
   type Input = z.infer<typeof SignInSchema>;
 
@@ -66,7 +69,10 @@ const Page = () => {
           return;
         }
         
+        localStorage.setItem("userEmail" , response.data.user.email);
+        setEmail(response.data.user.email);
         router.push("/dashboard");
+        toast("Sign-in Successful");
         
       } catch (error) {
          console.log("error in sign-in" , error);
