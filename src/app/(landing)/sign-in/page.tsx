@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import LandingNavbar from '@/components/LandingNavbar'
 import axios from 'axios';
 
-
 import {
   Form,
   FormControl,
@@ -42,11 +41,11 @@ import {toast} from 'sonner'
 
 const Page = () => {
   const router = useRouter();
+
   const {email , setEmail} = useCurrentUser();
+  const[isLoading , setIsLoading] = useState<boolean>(false);
 
   type Input = z.infer<typeof SignInSchema>;
-
-
 
   const form = useForm<Input>({
     resolver: zodResolver(SignInSchema),
@@ -62,9 +61,11 @@ const Page = () => {
  async function onSubmit(data: Input) {
       console.log(data);
       try {
+        setIsLoading(true);
         const response = await axios.post("/api/auth/sign-in" , data);
 
         if(!response.data.ok) {
+          toast("UnSuccessful Sign In");
           console.log(response.data.error);
           return;
         }
@@ -75,7 +76,10 @@ const Page = () => {
         toast("Sign-in Successful");
         
       } catch (error) {
+         toast("error while Sign In");
          console.log("error in sign-in" , error);
+      } finally{
+        setIsLoading(false);
       }
 
   }
@@ -141,7 +145,7 @@ const Page = () => {
 
 
                 <div className='flex gap-2' >
-                  <Button type="submit" className={cn(" hover:bg-white bg-white text-black ", )} >
+                  <Button type="submit" disabled={isLoading} className={cn(" hover:bg-white bg-white text-black ", )} >
                     Enter
                   </Button>
 
@@ -150,6 +154,7 @@ const Page = () => {
 
                   <Link href={"/sign-up"} >
                   <Button
+                    disabled={isLoading}
                     variant={'premium'}
                     className={cn('bg-black ml-4 ', )} > Sign Up ? </Button>
                   </Link>

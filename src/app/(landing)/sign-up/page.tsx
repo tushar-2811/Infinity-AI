@@ -50,7 +50,7 @@ import { useRouter } from 'next/navigation';
 
 const Page = () => {
   const router = useRouter();
-
+  const [isLoading , setIsLoading] = useState<boolean>(false);
   const [formStep, setFormStep] = useState(0);
   type Input = z.infer<typeof SignUpSchema>;
 
@@ -73,21 +73,27 @@ const Page = () => {
 
  async function onSubmit(data: Input) {
      try {
+      setIsLoading(true);
       if (data.password !== data.confirmPassword) {
         toast("Passwords don't match")
         return;
       }
-
+       
       const response = await axios.post("/api/auth/sign-up" , data);
 
       if(!response.data.ok){
+        toast("unsuccessful sign up");
          console.log("error in sign-up" , response.data?.error);
          return;
       }
 
       router.push("/sign-in");
+      toast("successful sign up , Now Sign In to continue");
      } catch (error) {
+      toast("error while sign up , try again");
        console.log("error in sign-up" , error)
+     } finally{
+      setIsLoading(false);
      }
   }
 
@@ -247,7 +253,7 @@ const Page = () => {
 
 
                 <div className='flex gap-2' >
-                  <Button type="submit" className={cn(" hover:bg-white bg-white text-black ", {
+                  <Button disabled={isLoading} type="submit" className={cn(" hover:bg-white bg-white text-black ", {
                     "hidden": formStep === 0
                   })} >
                     Submit
@@ -282,6 +288,7 @@ const Page = () => {
 
 
                   <Button
+                    disabled={isLoading}
                     type='button'
                     onClick={() => {
                       setFormStep(0);
