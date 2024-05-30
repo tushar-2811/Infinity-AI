@@ -252,7 +252,7 @@ const Page = () => {
                 </motion.div>
 
 
-                <div className='flex gap-2' >
+                <div className='flex justify-between' >
                   <Button disabled={isLoading} type="submit" className={cn(" hover:bg-white bg-white text-black ", {
                     "hidden": formStep === 0
                   })} >
@@ -298,11 +298,10 @@ const Page = () => {
                     })} ><ArrowLeft className='h-4 w-4 mr-2 ' /> Go Back  </Button>
 
                   <Link href={"/sign-in"} >
-                  <Button
-                    variant={'premium'}
-                    className={cn('bg-black ml-4 ', {
+                  <h1
+                    className={cn(' border-2 border-white text-white px-4 py-2 rounded-md hover:text-red-500 ', {
                       "hidden": formStep === 1
-                    })} > Sign In ? </Button>
+                    })} > Sign In ? </h1>
                   </Link>
                 </div>
 

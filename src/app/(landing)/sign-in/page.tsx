@@ -144,19 +144,16 @@ const Page = () => {
                   />
 
 
-                <div className='flex gap-2' >
+                <div className='flex gap-2 justify-between items-center' >
                   <Button type="submit" disabled={isLoading} className={cn(" hover:bg-white bg-white text-black ", )} >
-                    Enter
+                    Sign In
                   </Button>
 
                  
 
 
                   <Link href={"/sign-up"} >
-                  <Button
-                    disabled={isLoading}
-                    variant={'premium'}
-                    className={cn('bg-black ml-4 ', )} > Sign Up ? </Button>
+                   <h1 className=' border-2 border-white text-white px-4 py-2 rounded-md hover:text-red-500 '>Sign Up</h1>
                   </Link>
                 </div>
 
