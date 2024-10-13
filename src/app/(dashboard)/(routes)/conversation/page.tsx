@@ -108,7 +108,7 @@ const Page = () => {
                       <Input
                         className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                         disabled={isLoading}
-                        placeholder="Is going to OYO with my girlfriend is legal ?"
+                        placeholder="Is doing moonlighting in India is legal ?"
                         {...field}
                       />
                     </FormControl>
